@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hi!</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 6rem;
+      color: #333;
+      letter-spacing: 0.1em;
+      text-shadow: 2px 4px 8px rgba(0,0,0,0.15);
+      animation: wave 1.5s ease-in-out infinite alternate;
+      margin-top: 2rem;
+    }
+
+    @keyframes wave {
+      from { transform: rotate(-5deg) scale(1); }
+      to   { transform: rotate(5deg)  scale(1.05); }
+    }
+
+    .balloon-container {
+      position: relative;
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .balloon {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .balloon:nth-child(2) { animation-delay: 0.5s; }
+    .balloon:nth-child(3) { animation-delay: 1s; }
+    .balloon:nth-child(4) { animation-delay: 1.5s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50%       { transform: translateY(-20px) rotate(3deg); }
+    }
+
+    .balloon-body {
+      width: 80px;
+      height: 100px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      position: relative;
+      box-shadow: inset -8px -8px 20px rgba(0,0,0,0.15), 4px 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .balloon-body::after {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 18px;
+      width: 20px;
+      height: 28px;
+      background: rgba(255,255,255,0.35);
+      border-radius: 50%;
+      transform: rotate(-30deg);
+    }
+
+    .balloon-knot {
+      width: 10px;
+      height: 12px;
+      background: inherit;
+      filter: brightness(0.7);
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      margin-top: -1px;
+    }
+
+    .balloon-string {
+      width: 1px;
+      height: 80px;
+      background: rgba(0,0,0,0.25);
+      border-left: 1.5px dashed rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    /* Balloon colors */
+    .balloon:nth-child(1) .balloon-body { background: #ff6b6b; }
+    .balloon:nth-child(1) .balloon-knot { background: #cc4444; }
+
+    .balloon:nth-child(2) .balloon-body { background: #ffd93d; }
+    .balloon:nth-child(2) .balloon-knot { background: #ccaa00; }
+
+    .balloon:nth-child(3) .balloon-body { background: #6bcb77; }
+    .balloon:nth-child(3) .balloon-knot { background: #449950; }
+
+    .balloon:nth-child(4) .balloon-body { background: #4d96ff; }
+    .balloon:nth-child(4) .balloon-knot { background: #2255cc; }
+  </style>
+</head>
+<body>
+
+  <div class="balloon-container">
+    <div class="balloon">
+      <div class="balloon-body"></div>
+      <div class="balloon-knot"></div>
+      <div class="balloon-string"></div>
+    </div>
+    <div class="balloon">
+      <div class="balloon-body"></div>
+      <div class="balloon-knot"></div>
+      <div class="balloon-string"></div>
+    </div>
+    <div class="balloon">
+      <div class="balloon-body"></div>
+      <div class="balloon-knot"></div>
+      <div class="balloon-string"></div>
+    </div>
+    <div class="balloon">
+      <div class="balloon-body"></div>
+      <div class="balloon-knot"></div>
+      <div class="balloon-string"></div>
+    </div>
+  </div>
+
+  <h1>Hi!</h1>
+
+</body>
+</html>
