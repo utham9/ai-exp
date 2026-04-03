@@ -45,6 +45,7 @@
       flex-direction: column;
       align-items: center;
       animation: float 3s ease-in-out infinite;
+      cursor: pointer;
     }
 
     .balloon:nth-child(2) { animation-delay: 0.5s; }
@@ -132,6 +133,35 @@
       100% { transform: scale(0);   opacity: 0; }
     }
 
+    /* ── Spider-Man fall ── */
+    #spiderman-wrap.falling {
+      animation: none !important;
+    }
+
+    #spiderman-wrap.falling #spiderman-body {
+      animation: none !important;
+    }
+
+    #spiderman-wrap.falling #web-line {
+      animation: web-snap 0.2s ease-out forwards;
+    }
+
+    @keyframes web-snap {
+      0%   { opacity: 1; height: 60px; }
+      100% { opacity: 0; height: 0px; }
+    }
+
+    #spiderman-wrap.falling #spiderman-body {
+      animation: spidey-fall 1.2s ease-in forwards !important;
+    }
+
+    @keyframes spidey-fall {
+      0%   { transform: rotate(0deg)   translateY(0);    opacity: 1; }
+      30%  { transform: rotate(60deg)  translateY(80px); opacity: 1; }
+      70%  { transform: rotate(180deg) translateY(300px); opacity: 1; }
+      100% { transform: rotate(270deg) translateY(120vh); opacity: 0; }
+    }
+
     /* ── Spider-Man ── */
     #spiderman-scene {
       position: fixed;
@@ -200,22 +230,22 @@
 <body>
 
   <div class="balloon-container">
-    <div class="balloon">
+    <div class="balloon" data-color="red">
       <div class="balloon-body"></div>
       <div class="balloon-knot"></div>
       <div class="balloon-string"></div>
     </div>
-    <div class="balloon">
+    <div class="balloon" data-color="yellow">
       <div class="balloon-body"></div>
       <div class="balloon-knot"></div>
       <div class="balloon-string"></div>
     </div>
-    <div class="balloon">
+    <div class="balloon" data-color="green">
       <div class="balloon-body"></div>
       <div class="balloon-knot"></div>
       <div class="balloon-string"></div>
     </div>
-    <div class="balloon">
+    <div class="balloon" data-color="blue">
       <div class="balloon-body"></div>
       <div class="balloon-knot"></div>
       <div class="balloon-string"></div>
@@ -282,11 +312,36 @@
   </div>
 
   <script>
+    const popped = new Set();
+
+    function popBalloon(balloon) {
+      if (balloon.classList.contains('pop')) return;
+      balloon.classList.add('pop');
+    }
+
+    function checkSpideyFall() {
+      if (popped.has('red') && popped.has('blue')) {
+        const wrap = document.getElementById('spiderman-wrap');
+        wrap.classList.add('falling');
+      }
+    }
+
+    // Click individual balloons
+    document.querySelectorAll('.balloon').forEach(function (balloon) {
+      balloon.addEventListener('click', function () {
+        popBalloon(balloon);
+        popped.add(balloon.dataset.color);
+        checkSpideyFall();
+      });
+    });
+
+    // Click Spider-Man pops all balloons
     document.getElementById('spiderman-body').addEventListener('click', function () {
-      const balloons = document.querySelectorAll('.balloon');
-      balloons.forEach(function (balloon, i) {
+      document.querySelectorAll('.balloon').forEach(function (balloon, i) {
         setTimeout(function () {
-          balloon.classList.add('pop');
+          popBalloon(balloon);
+          popped.add(balloon.dataset.color);
+          checkSpideyFall();
         }, i * 120);
       });
     });
