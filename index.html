@@ -224,7 +224,15 @@
       width: 70px;
       height: 70px;
       filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.4));
+      --spidey-primary: #cc0000;
+      --spidey-secondary: #1a1aff;
+      transition: --spidey-primary 0.4s, --spidey-secondary 0.4s;
     }
+
+    .spidey-primary   { fill: var(--spidey-primary); }
+    .spidey-primary-s { stroke: var(--spidey-primary); }
+    .spidey-secondary { fill: var(--spidey-secondary); }
+    .spidey-secondary-s { stroke: var(--spidey-secondary); }
   </style>
 </head>
 <body>
@@ -262,15 +270,14 @@
         <!-- SVG Spider-Man figure -->
         <svg id="spiderman-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
           <!-- Body -->
-          <ellipse cx="50" cy="58" rx="16" ry="20" fill="#cc0000"/>
+          <ellipse cx="50" cy="58" rx="16" ry="20" class="spidey-primary"/>
           <!-- Web pattern on body -->
-          <ellipse cx="50" cy="58" rx="16" ry="20" fill="none" stroke="#8b0000" stroke-width="1"
-            stroke-dasharray="3 3"/>
+          <ellipse cx="50" cy="58" rx="16" ry="20" fill="none" class="spidey-primary-s" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
           <!-- Chest spider symbol -->
-          <ellipse cx="50" cy="55" rx="5" ry="3" fill="#000" opacity="0.6"/>
+          <ellipse cx="50" cy="55" rx="5" ry="3" fill="#000" opacity="0.5"/>
 
           <!-- Head -->
-          <circle cx="50" cy="32" r="16" fill="#cc0000"/>
+          <circle cx="50" cy="32" r="16" class="spidey-primary"/>
           <!-- Mask eyes (white lenses) -->
           <ellipse cx="43" cy="29" rx="6" ry="7" fill="white"/>
           <ellipse cx="57" cy="29" rx="6" ry="7" fill="white"/>
@@ -278,59 +285,80 @@
           <ellipse cx="43" cy="29" rx="4" ry="5" fill="#111"/>
           <ellipse cx="57" cy="29" rx="4" ry="5" fill="#111"/>
           <!-- Web lines on head -->
-          <line x1="50" y1="16" x2="50" y2="48" stroke="#8b0000" stroke-width="1"/>
-          <line x1="34" y1="16" x2="66" y2="48" stroke="#8b0000" stroke-width="1"/>
-          <line x1="66" y1="16" x2="34" y2="48" stroke="#8b0000" stroke-width="1"/>
-          <line x1="34" y1="32" x2="66" y2="32" stroke="#8b0000" stroke-width="1"/>
-          <ellipse cx="50" cy="32" r="10" fill="none" stroke="#8b0000" stroke-width="1"/>
-          <ellipse cx="50" cy="32" r="6"  fill="none" stroke="#8b0000" stroke-width="1"/>
+          <line x1="50" y1="16" x2="50" y2="48" class="spidey-primary-s" stroke-width="1" opacity="0.5"/>
+          <line x1="34" y1="16" x2="66" y2="48" class="spidey-primary-s" stroke-width="1" opacity="0.5"/>
+          <line x1="66" y1="16" x2="34" y2="48" class="spidey-primary-s" stroke-width="1" opacity="0.5"/>
+          <line x1="34" y1="32" x2="66" y2="32" class="spidey-primary-s" stroke-width="1" opacity="0.5"/>
+          <ellipse cx="50" cy="32" r="10" fill="none" class="spidey-primary-s" stroke-width="1" opacity="0.5"/>
+          <ellipse cx="50" cy="32" r="6"  fill="none" class="spidey-primary-s" stroke-width="1" opacity="0.5"/>
 
-          <!-- Left arm (extended up-right for web-shooting) -->
-          <line x1="34" y1="52" x2="10" y2="30" stroke="#cc0000" stroke-width="8" stroke-linecap="round"/>
-          <!-- Left hand -->
-          <circle cx="10" cy="30" r="5" fill="#cc0000"/>
+          <!-- Left arm -->
+          <line x1="34" y1="52" x2="10" y2="30" class="spidey-primary-s" stroke-width="8" stroke-linecap="round"/>
+          <circle cx="10" cy="30" r="5" class="spidey-primary"/>
           <!-- Web shooting from hand -->
           <line x1="10" y1="30" x2="0" y2="10" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round"/>
 
-          <!-- Right arm (trailing back) -->
-          <line x1="66" y1="52" x2="88" y2="65" stroke="#cc0000" stroke-width="8" stroke-linecap="round"/>
-          <circle cx="88" cy="65" r="5" fill="#cc0000"/>
+          <!-- Right arm -->
+          <line x1="66" y1="52" x2="88" y2="65" class="spidey-primary-s" stroke-width="8" stroke-linecap="round"/>
+          <circle cx="88" cy="65" r="5" class="spidey-primary"/>
 
           <!-- Legs -->
-          <line x1="44" y1="76" x2="36" y2="95" stroke="#cc0000" stroke-width="8" stroke-linecap="round"/>
-          <line x1="56" y1="76" x2="64" y2="95" stroke="#cc0000" stroke-width="8" stroke-linecap="round"/>
-          <!-- Boots (blue) -->
-          <ellipse cx="36" cy="95" rx="7" ry="5" fill="#1a1aff"/>
-          <ellipse cx="64" cy="95" rx="7" ry="5" fill="#1a1aff"/>
+          <line x1="44" y1="76" x2="36" y2="95" class="spidey-primary-s" stroke-width="8" stroke-linecap="round"/>
+          <line x1="56" y1="76" x2="64" y2="95" class="spidey-primary-s" stroke-width="8" stroke-linecap="round"/>
+          <!-- Boots (secondary color) -->
+          <ellipse cx="36" cy="95" rx="7" ry="5" class="spidey-secondary"/>
+          <ellipse cx="64" cy="95" rx="7" ry="5" class="spidey-secondary"/>
 
-          <!-- Blue side panels -->
-          <path d="M34 52 Q20 65 36 95" fill="none" stroke="#1a1aff" stroke-width="6" stroke-linecap="round"/>
-          <path d="M66 52 Q80 65 64 95" fill="none" stroke="#1a1aff" stroke-width="6" stroke-linecap="round"/>
+          <!-- Side panels (secondary color) -->
+          <path d="M34 52 Q20 65 36 95" fill="none" class="spidey-secondary-s" stroke-width="6" stroke-linecap="round"/>
+          <path d="M66 52 Q80 65 64 95" fill="none" class="spidey-secondary-s" stroke-width="6" stroke-linecap="round"/>
         </svg>
       </div>
     </div>
   </div>
 
   <script>
-    const popped = new Set();
+    const COLOR_MAP = {
+      red:    '#ff6b6b',
+      yellow: '#ffd93d',
+      green:  '#6bcb77',
+      blue:   '#4d96ff'
+    };
+
+    const poppedColors = [];
+
+    function applySpideyColors(c1, c2) {
+      const svg = document.getElementById('spiderman-svg');
+      svg.style.setProperty('--spidey-primary', c1);
+      svg.style.setProperty('--spidey-secondary', c2);
+      // flash effect
+      svg.style.filter = 'drop-shadow(0 0 12px ' + c1 + ') drop-shadow(0 0 12px ' + c2 + ')';
+      setTimeout(function () {
+        svg.style.filter = 'drop-shadow(2px 4px 6px rgba(0,0,0,0.4))';
+      }, 600);
+    }
 
     function popBalloon(balloon) {
-      if (balloon.classList.contains('pop')) return;
+      if (balloon.classList.contains('pop')) return false;
       balloon.classList.add('pop');
+      return true;
     }
 
     function checkSpideyFall() {
-      if (popped.has('red') && popped.has('blue')) {
-        const wrap = document.getElementById('spiderman-wrap');
-        wrap.classList.add('falling');
+      if (poppedColors.includes('red') && poppedColors.includes('blue')) {
+        document.getElementById('spiderman-wrap').classList.add('falling');
       }
     }
 
-    // Click individual balloons
     document.querySelectorAll('.balloon').forEach(function (balloon) {
       balloon.addEventListener('click', function () {
-        popBalloon(balloon);
-        popped.add(balloon.dataset.color);
+        if (!popBalloon(balloon)) return;
+        const color = balloon.dataset.color;
+        poppedColors.push(color);
+
+        if (poppedColors.length === 2) {
+          applySpideyColors(COLOR_MAP[poppedColors[0]], COLOR_MAP[poppedColors[1]]);
+        }
         checkSpideyFall();
       });
     });
@@ -339,8 +367,12 @@
     document.getElementById('spiderman-body').addEventListener('click', function () {
       document.querySelectorAll('.balloon').forEach(function (balloon, i) {
         setTimeout(function () {
-          popBalloon(balloon);
-          popped.add(balloon.dataset.color);
+          if (!popBalloon(balloon)) return;
+          const color = balloon.dataset.color;
+          poppedColors.push(color);
+          if (poppedColors.length === 2) {
+            applySpideyColors(COLOR_MAP[poppedColors[0]], COLOR_MAP[poppedColors[1]]);
+          }
           checkSpideyFall();
         }, i * 120);
       });
